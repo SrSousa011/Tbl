@@ -1,0 +1,83 @@
+--Criação do Banco de Dados--
+
+create database db_Biblioteca
+
+
+--Criação das Tabelas--
+
+create table tb_Livro
+(
+Id_Livro smallint primary key  identity (1,1),
+Nome_Livro varchar(50) not null,
+Isbn varchar (50) not null unique,
+Id_Autor smallint not null,
+Data_Pub datetime not null,
+Preco_Livro money not null
+)
+
+
+
+create table tb_Autores
+(
+Id_Autor smallint primary key,
+Nome_Autor varchar (50),
+Sobrenome_Autor varchar (60)
+)
+
+
+create table tb_Editoras
+(
+Id_Editora smallint primary key identity,
+Nome_Editora varchar (50) not null
+)
+
+
+-- Adicionano Constraints --
+
+alter table tb_Livro
+ add Id_Autor smallint not null
+ constraint fk_Id_Autor 
+ foreign key (Id_Autor)
+ references tb_Autores
+
+ alter table tb_Livro
+ add Id_Editora smallint not null
+ constraint fk_Id_Editora
+ foreign key (Id_Editora)
+ references tb_Editoras
+ 
+ 
+ 
+ -- Inserindo Valores nas Tabelas--
+ 
+INSERT INTO tb_Autores (ID_Autor, Nome_AUTOR, SobreNome_Autor) VALUES (1, 'Daniel', 'Barret')
+INSERT INTO tb_Autores (ID_Autor, Nome_AUTOR, SobreNome_Autor) VALUES (2, 'Gerald', 'Queen')
+INSERT INTO tb_Autores (ID_Autor, Nome_AUTOR, SobreNome_Autor) VALUES (3, 'Joao', 'Nerick')
+INSERT INTO tb_Autores (ID_Autor, Nome_AUTOR, SobreNome_Autor) VALUES (4, 'Vini', 'Jot')
+INSERT INTO tb_Autores (ID_Autor, Nome_AUTOR, SobreNome_Autor) VALUES (5, 'Wilian', 'Sarui')
+INSERT INTO tb_Autores (ID_Autor, Nome_AUTOR, SobreNome_Autor) VALUES (6, 'Marcio', 'Marick')
+INSERT INTO tb_Autores (ID_Autor, Nome_AUTOR, SobreNome_Autor) VALUES (7, 'Kaleb', 'Sulle')
+INSERT INTO tb_Autores (ID_Autor, Nome_AUTOR, SobreNome_Autor) VALUES (8, 'João', 'Tarian')
+
+INSERT INTO tb_Editoras (Nome_Editora) VALUES ('Prentice Hall')
+INSERT INTO tb_Editoras (Nome_Editora) VALUES ('Wiley Hall')
+INSERT INTO tb_Editoras (Nome_Editora) VALUES ('Ebook')
+INSERT INTO tb_Editoras (Nome_Editora) VALUES ('AltaBook')
+INSERT INTO tb_Editoras (Nome_Editora) VALUES ('Press')
+INSERT INTO tb_Editoras (Nome_Editora) VALUES ('Starbook')
+INSERT INTO tb_Editoras (Nome_Editora) VALUES ('BeelBook')
+INSERT INTO tb_Editoras (Nome_Editora) VALUES ('Uter')
+
+insert into tb_livro (Nome_Livro, ISBN, Data_Pub, Preco_Livro, 
+ID_Autor, ID_Editora) 
+values
+('Linux Command Line and Shell Scripting',143856969, '20091221', 68.35, 5,4),
+('SSH, the Secure Shell', 127658789, '20091221', 58.30, 1, 2),
+('Using Samba', 123856789, '20001221', 61.45, 2, 2),
+('Fedora and Red Hat Linux', 123346789, '20101101', 62.24,3,1),
+('Windows Server 2012 Inside Out', 123356789, '20040517', 66.80, 4,3),
+('Microsoft Exchange Server 2010', 123366789,'20001221', 45.30, 4,3)
+
+
+
+ Autor : Bóson Treinamentos
